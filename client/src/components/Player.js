@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {Card, CardText, CardHeader, CardTitle, CardBody} from "reactstrap";
 import useCountryFlag from "../hooks/useCountryFlag";
 export default function Player(props){

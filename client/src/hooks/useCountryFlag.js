@@ -1,16 +1,20 @@
+import useLocalStorage from "./useLocalStorage";
+
+const determineUrl = (name, options) => {
+    const countryEntry = countries.find(country => country.name.toLowerCase() === name.toLowerCase());
+    if (!countryEntry) throw (name + " is not a valid country name.");
+    const countryCode = countryEntry.code;
+    return `https://www.countryflags.io/${countryCode}/${options?.style || 'flat'}/${options?.size || 64}.png`;
+};
 
 export default function useCountryFlag(name, options) {
-    let countryEntry;
-    let flagURL;
+
+    const initialFlagURL = determineUrl(name, options);
+    const [flagURL, setFlagURL] = useLocalStorage(name, initialFlagURL);
 
     const setFlagName = (name, options) => {
-       countryEntry = countries.find(country => country.name.toLowerCase() === name.toLowerCase());
-        if(!countryEntry) throw(name+" is not a valid country name.");
-        const countryCode = countryEntry.code;
-        flagURL = `https://www.countryflags.io/${countryCode}/${options?.style || 'flat'}/${options?.size || 64}.png`;
+        setFlagURL(determineUrl(name, options));
     };
-
-    setFlagName(name, {style: "flat", size: 64});
 
     return [flagURL, setFlagName];
 }
