@@ -1,6 +1,6 @@
 import React from "react";
 import Player from "./Player";
-import { CardDeck } from "reactstrap";
+import { Row } from "reactstrap";
 class WorldCupContainer extends React.Component {
     state = {
         players: []
@@ -13,11 +13,14 @@ class WorldCupContainer extends React.Component {
     }
 
     render() {
-        return (<div>
-            {this.state.players.map(x =>
-                <Player key={x.id} {...x} />
-            )}
-        </div>);
+        return (<>
+            <h1>Women's World Cup Players</h1>
+            <Row xs="3">
+                {this.state.players.map(x =>
+                    <Player key={x.id} {...x} />
+                )}
+            </Row>
+        </>);
     }
 }
 
