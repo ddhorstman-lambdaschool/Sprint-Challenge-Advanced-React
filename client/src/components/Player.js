@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React  from "react";
 import {Card, CardText, CardHeader, CardTitle, CardBody} from "reactstrap";
 import useCountryFlag from "../hooks/useCountryFlag";
 export default function Player(props){
-    const [flagURL, setFlag] = useCountryFlag(props.country);
+    const flagURL = useCountryFlag(props.country)[0];
     return (
         <Card style={{margin: "5px 0px"}}>
             <CardHeader>

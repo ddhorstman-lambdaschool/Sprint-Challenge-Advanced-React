@@ -8,7 +8,6 @@ class WorldCupContainer extends React.Component {
     componentDidMount() {
         fetch("http://localhost:5000/api/players")
             .then(res => res.json())
-            //.then(console.log);
             .then(res => this.setState({ players: res }));
     }
 
